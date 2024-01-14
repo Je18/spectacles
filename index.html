@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spectacles</title>
+    <link href="style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <h1>
+        🎫 - SPECTACLES - 🎉
+    </h1>
+    <div id="ticket" name="ticket">
+        <div id="reserv" class="reserv">
+            <b id="title"><u>Reservation :</u></b><br>
+            <label>Date :</label>
+            <select id="date">
+                <option value="0">Samedi 27 Janvier</option>
+                <option value="1">Samedi 3 Février</option>
+                <option value="2">Samedi 10 Février</option>
+            </select>
+            <br>
+            <label>Nombres de place :</label>
+            <input type="number" id="billet" value="1">
+            <br>
+            <button type="submit" id="valider">Valider</button>
+        </div>
+        <button type="submit" id="plus">Ajouter</button>
+        <button type="submit" id="moins">Supprimer</button>
+    </div>
+    
+    <script>
+      const plus = document.getElementById('plus');
+      plus.addEventListener('click', ajouter);
+
+      function ajouter() {
+        const reservation = document.getElementById('reserv');
+        const reservationCopie = reservation.cloneNode(true);
+    
+        const date = reservationCopie.querySelector('#date');
+        const billet = reservationCopie.querySelector('#billet');
+    
+        date.selectedIndex = 0;
+        billet.value = '1';
+    
+        document.getElementById('ticket').parentNode.appendChild(reservationCopie);
+      }
+    
+      const moins = document.getElementById('moins');
+      moins.addEventListener('click', supprimer);
+    
+      function supprimer() {
+        const reservations = document.querySelectorAll('.reserv');
+        if (reservations.length > 1) {
+          const dernierReservation = reservations[reservations.length - 1];
+          dernierReservation.parentNode.removeChild(dernierReservation);
+        }
+      }
+    </script>
+    
+    </body>
+    </html>
